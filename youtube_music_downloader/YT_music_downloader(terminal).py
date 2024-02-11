@@ -2,7 +2,7 @@ from pytube import YouTube, Playlist
 
 def download_video(url, output_path="."):
     try:
-        yt = YouTube(url)
+        yt = YouTube(url, allow_oauth_cache=True, use_oauth=True) ## https://github.com/pytube/pytube/issues/1712 (for context) for some reason there is an error with the age restriction, and the only way (that I could find till now) to bypass the age restriction error is by going to the dir where your interpretor is installed (inluding the pytube lib.), open " innertube.py " and in  line 223 change ANDROID_MUSIC to something like WEB, WEB_CREATOR, and MWEB ( but this reduces the downloading speed to 0.7 mb ) :C   
         title = yt.title
         duration = yt.length
         print(f"Downloading: {title}")
